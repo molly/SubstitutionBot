@@ -18,15 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import HTMLParser
 import re
+import HTMLParser
+import json
 import tweepy
 import urllib2
 from secrets import *
-from bs4 import BeautifulSoup
 from time import gmtime, strftime
-
-hparser = HTMLParser.HTMLParser()
 
 offensive = re.compile(r"\b(deaths?|dead(ly)?|die(s|d)?|hurts?|"
                        r"(sex|child)[ -]?(abuse|trafficking)|"
@@ -42,80 +40,131 @@ offensive = re.compile(r"\b(deaths?|dead(ly)?|die(s|d)?|hurts?|"
                        r"al[- ]?Qaeda|blasts?|violen(t|ce))|lethal\W?\b",
                        flags=re.IGNORECASE)
 
+substitutions = {
+    "witnesses": "these dudes I know",
+    "witness": "this dude I know",
+    "allegedly": "kinda probably",
+    "alleged": "kinda probably",
+    "new study": "Tumblr post",
+    "new studies": "Tumblr posts",
+    "rebuild": "avenge",
+    "rebuilds": "avenges",
+    "rebuilding": "avenging",
+    "space": "spaaace",
+    "google glass": "Virtual Boy",
+    "google glasses": "Virtual Boys",
+    "smartphone": "Pokedex",
+    "phone": "Pokedex",
+    "cellphone": "Pokedex",
+    "smartphones": "Pokedexes",
+    "cellphones": "Pokedex",
+    "phones": "Pokedex",
+    "electric": "atomic",
+    "electrical": "atomic",
+    "electronic": "atomic",
+    "senator": "Elf-Lord",
+    "senators": "Elf-Lords",
+    "car": "cat",
+    "cars": "cats",
+    "election": "eating contest",
+    "elections": "eating contest",
+    "congressional leaders": "river spirits",
+    "congressional leader": "river spirit",
+    "homeland security": "Homestar Runner",
+    "could not be reached for comment": "is guilty and everyone knows it",
+    "ice": "floor water",
+    "glove": "hand-coat",
+    "gloves": "hand-coats",
+    "sun": "spacelight",
+    "bird": "flappy plane",
+    "birds": "flappy planes",
+    "tweet": "beep",
+    "tweets": "beeps",
+    "tweeting": "beeping",
+    "tree": "stick tower",
+    "trees": "stick towers"
+    }
+
+hparser = HTMLParser.HTMLParser()
+
 
 def get():
-    try:
-        request = urllib2.Request(
-            "http://news.google.com/news?pz=1&cf=all&ned=us&hl=en&output=rss")
-        response = urllib2.urlopen(request)
-    except urllib2.URLError as e:
-        print e.reason
-    else:
-        html = BeautifulSoup(response.read())
-        items = html.find_all('item')
-        for item in items:
-            headline = item.title.string
-            h_split = headline.split()
+    # Get the headlines, iterate through them to try to find a suitable one
+    page = 1
+    while page <= 3:
+        try:
+            request = urllib2.Request(
+                "http://content.guardianapis.com/search?format=json&page-size=50&page=" +
+                str(page) + "&api-key=" + GUARDIAN_KEY)
+            response = urllib2.urlopen(request)
+        except urllib2.URLError as e:
+            print e.reason
+        else:
+            blob = json.load(response)
+            results = blob["response"]["results"]
+            for item in results:
+                headline = item["webTitle"]
 
-            # We don't want to use incomplete headlines
-            if "..." in headline:
-                continue
+                # Skip anything too offensive
+                if not tact(headline):
+                    continue
 
-            # Try to weed out all-caps headlines
-            if count_caps(h_split) >= len(h_split) - 3:
-                continue
+                # Remove attribution string
+                if "|" in headline:
+                    headline = headline.split("|")[:-1]
+                    headline = ' '.join(headline).strip()
 
-            # Skip anything too offensive
-            if not tact(headline):
-                continue
-
-            # Remove attribution string
-            if "-" in headline:
-                headline = headline.split("-")[:-1]
-                headline = ' '.join(headline).strip()
-
-            if process(headline):
-                break
-            else:
-                continue
+                if process(headline.split()):
+                    return
+                else:
+                    page += 1
 
 
 def process(headline):
+    # Do the substitution
+    replacement = False
+    for key in substitutions.keys():
+        for index, word in enumerate(headline):
+            if word.lower() == key:
+                headline[index] = substitutions[key]
+                replacement = True
+    if not replacement:
+        return False
+
+    headline = " ".join(headline)
     headline = hparser.unescape(headline)
-    print headline
 
     # Don't tweet anything that's too long
     if len(headline) > 140:
         return False
 
-    # Don't tweet anything where a replacement hasn't been made
-    if "cyber" not in headline:
+    # Don't tweet a headline we've tweeted before
+    f = open("substitutionbot.log", 'r')
+    log = f.read()
+    f.close()
+    if headline in log:
         return False
-    else:
-        return tweet(headline)
+
+    # All systems go!
+    return tweet(headline)
 
 
 def tweet(headline):
-    print headline
-    # auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
-    # auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
-    # api = tweepy.API(auth)
-    # tweets = api.user_timeline('CyberPrefixer')
-    #
-    # # Check that we haven't tweeted this before
-    # for tweet in tweets:
-    #     if headline == tweet.text:
-    #         return False
-    #
-    # # Log tweet to file
-    # f = open("substitutionbot.log", 'a')
-    # t = strftime("%d %b %Y %H:%M:%S", gmtime())
-    # f.write("\n" + t + " " + headline)
-    # f.close()
-    #
-    # # Post tweet
-    # api.update_status(headline)
-    # return True
+    # Actually Tweet this thing!
+    auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
+    auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
+    api = tweepy.API(auth)
+    tweets = api.user_timeline('CyberPrefixer')
+
+    # Log tweet to file
+    f = open("substitutionbot.log", 'a')
+    t = strftime("%d %b %Y %H:%M:%S", gmtime())
+    f.write("\n" + t + " " + headline)
+    f.close()
+
+    # Post tweet
+    api.update_status(headline)
+    return True
 
 
 def tact(headline):
@@ -124,14 +173,6 @@ def tact(headline):
         return True
     else:
         return False
-
-
-def count_caps(headline):
-    count = 0
-    for word in headline:
-        if word[0].isupper():
-            count += 1
-    return count
 
 if __name__ == "__main__":
     get()
