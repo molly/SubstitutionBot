@@ -119,6 +119,12 @@ def get():
                 else:
                     page += 1
 
+    # Log that no tweet could be made
+    f = open("substitutionbot.log", 'a')
+    t = strftime("%d %b %Y %H:%M:%S", gmtime())
+    f.write("\n" + t + " No possible tweet.")
+    f.close()
+
 
 def process(headline):
     # Do the substitution
