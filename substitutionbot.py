@@ -18,6 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 import re
 import HTMLParser
 import json
@@ -26,6 +27,8 @@ import urllib2
 from secrets import *
 from time import gmtime, strftime
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 offensive = re.compile(r"\b(deaths?|dead(ly)?|die(s|d)?|hurts?|"
                        r"(sex|child)[ -]?(abuse|trafficking)|"
                        r"injur(e|i?es|ed|y)|kill(ing|ed|er|s)?s?|"
@@ -120,7 +123,7 @@ def get():
                     page += 1
 
     # Log that no tweet could be made
-    f = open("substitutionbot.log", 'a')
+    f = open(os.path.join(__location__, "substitutionbot.log"), 'a')
     t = strftime("%d %b %Y %H:%M:%S", gmtime())
     f.write("\n" + t + " No possible tweet.")
     f.close()
@@ -145,7 +148,7 @@ def process(headline):
         return False
 
     # Don't tweet a headline we've tweeted before
-    f = open("substitutionbot.log", 'r')
+    f = open(os.path.join(__location__, "substitutionbot.log"), 'r')
     log = f.read()
     f.close()
     if headline in log:
@@ -163,7 +166,7 @@ def tweet(headline):
     tweets = api.user_timeline('CyberPrefixer')
 
     # Log tweet to file
-    f = open("substitutionbot.log", 'a')
+    f = open(os.path.join(__location__, "substitutionbot.log"), 'a')
     t = strftime("%d %b %Y %H:%M:%S", gmtime())
     f.write("\n" + t + " " + headline)
     f.close()
