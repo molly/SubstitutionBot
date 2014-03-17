@@ -18,13 +18,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import offensive
 import os
 import re
 import HTMLParser
 import json
 import tweepy
 import urllib2
+from offensive import offensive
 from secrets import *
 from time import gmtime, strftime
 
