@@ -73,7 +73,8 @@ substitutions = {
     "tweets": "beeps",
     "tweeting": "beeping",
     "tree": "stick tower",
-    "trees": "stick towers"
+    "trees": "stick towers",
+    "basketball": "shootyhoops"
     }
 
 hparser = HTMLParser.HTMLParser()
