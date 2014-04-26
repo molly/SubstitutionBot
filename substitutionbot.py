@@ -74,8 +74,18 @@ substitutions = {
     "tweeting": "beeping",
     "tree": "stick tower",
     "trees": "stick towers",
-    "basketball": "shootyhoops"
-    }
+    "basketball": "shootyhoops",
+    "gun": "point-and-shooty",
+    "guns": "point-and-shooties",
+    "automatic weapon": "automatic liberty machine",
+    "automatic weapons": "automatic liberty machines",
+    "automatic rifle": "automatic liberty machine",
+    "automatic rifles": "automatic liberty machines",
+    "semi-automatic weapon": "taste of liberty",
+    "semi-automatic weapons": "tastes of liberty",
+    "Ron Paul": "Uncle Liberty",
+    "Rand Paul": "Cousin Liberty"
+}
 
 hparser = HTMLParser.HTMLParser()
 
