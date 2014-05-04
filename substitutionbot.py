@@ -75,6 +75,7 @@ substitutions = {
     "tree": "stick tower",
     "trees": "stick towers",
     "basketball": "shootyhoops",
+    "NBA": "shootyhoops",
     "gun": "point-and-shooty",
     "guns": "point-and-shooties",
     "automatic weapon": "automatic liberty machine",
