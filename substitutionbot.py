@@ -85,7 +85,9 @@ substitutions = {
     "semi-automatic weapon": "taste of liberty",
     "semi-automatic weapons": "tastes of liberty",
     "Ron Paul": "Uncle Liberty",
-    "Rand Paul": "Cousin Liberty"
+    "Rand Paul": "Cousin Liberty",
+    "robot": "smashy-mashy walk-and-crashy",
+    "robots": "smashy-mashy walk-and-crashies"
 }
 
 hparser = HTMLParser.HTMLParser()
