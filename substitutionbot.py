@@ -172,7 +172,7 @@ def tweet(headline):
     # Log tweet to file
     f = open(os.path.join(__location__, "substitutionbot.log"), 'a')
     t = strftime("%d %b %Y %H:%M:%S", gmtime())
-    f.write("\n" + t + " " + headline)
+    f.write("\n" + t + " " + headline.encode('utf-8', 'replace'))
     f.close()
 
     # Post tweet
