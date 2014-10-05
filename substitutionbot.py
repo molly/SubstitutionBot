@@ -109,8 +109,9 @@ def get():
         else:
             blob = json.load(response)
             results = blob["response"]["results"]
+            results = results
             for item in results:
-                headline = item["webTitle"]
+                headline = item["webTitle"].encode('utf-8', 'ignore')
 
                 # Skip anything too offensive
                 if not tact(headline):
