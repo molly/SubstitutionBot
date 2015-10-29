@@ -1,4 +1,4 @@
-# Copyright (c) 2014 Molly White
+# Copyright (c) 2014–2015 Molly White
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -89,7 +89,9 @@ substitutions = {
     "robot": "smashy-mashy walk-and-crashy",
     "robots": "smashy-mashy walk-and-crashies",
     "force": "horse",
-    "forces": "horses"
+    "forces": "horses",
+    "keyboard": "leopard",
+    "keyboards": "leopards"
 }
 
 hparser = HTMLParser.HTMLParser()
