@@ -89,7 +89,9 @@ substitutions = {
     "robot": "smashy-mashy walk-and-crashy",
     "robots": "smashy-mashy walk-and-crashies",
     "force": "horse",
-    "forces": "horses"
+    "forces": "horses",
+    "keyboard": "leopard",
+    "keyboards": "leopards"
 }
 
 hparser = HTMLParser.HTMLParser()
