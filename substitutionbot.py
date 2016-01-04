@@ -92,6 +92,26 @@ substitutions = {
     "forces": "horses",
     "keyboard": "leopard",
     "keyboards": "leopards"
+    "debate": "dance-off",
+    "self driving": "uncontrollably swerving",
+    "poll": "psychic reading",
+    "candidate": "airbender",
+    "drone": "dog",
+    "vows to": "probably wont",
+    "at large": "very large",
+    "successfully": "suddenly",
+    "expands": "physically expands",
+    "first-degree": "friggin' awful",
+    "second-degree": "friggin' awful",
+    "third-degree": "friggin' awful",
+    "an unknown number": "like hundreds",
+    "front runner": "blade runner",
+    "global": "spherical",
+    "years": "minutes",
+    "minutes": "years",
+    "no indication", "lots of signs",
+    "urged restraint by": "drunkenly egged on",
+    "horsepower": "tons of horsemeat"
 }
 
 hparser = HTMLParser.HTMLParser()
