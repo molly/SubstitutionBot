@@ -1,4 +1,4 @@
-# Copyright (c) 2014–2015 Molly White
+# Copyright (c) 2014–2016 Molly White
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -93,22 +93,34 @@ substitutions = {
     "keyboard": "leopard",
     "keyboards": "leopards"
     "debate": "dance-off",
+    "debates": "dance-offs",
     "self driving": "uncontrollably swerving",
+    "self-driving": "uncontrollably swerving",
     "poll": "psychic reading",
+    "polls": "psychic readings",
     "candidate": "airbender",
+    "candidates": "airbenders",
     "drone": "dog",
+    "drones": "dogs",
     "vows to": "probably wont",
+    "vow to": "probably wont",
     "at large": "very large",
     "successfully": "suddenly",
     "expands": "physically expands",
+    "expand": "physically expand",
     "first-degree": "friggin' awful",
+    "first degree": "friggin' awful",
     "second-degree": "friggin' awful",
+    "second degree": "friggin' awful",
     "third-degree": "friggin' awful",
+    "third degree": "friggin' awful",
     "an unknown number": "like hundreds",
     "front runner": "blade runner",
+    "front-runner": "blade runner",
     "global": "spherical",
     "years": "minutes",
-    "minutes": "years",
+    "year": "minute",
+    "minute": "year",
     "no indication", "lots of signs",
     "urged restraint by": "drunkenly egged on",
     "horsepower": "tons of horsemeat"

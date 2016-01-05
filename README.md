@@ -11,6 +11,3 @@ A Twitter bot to implement [xkcd 1288](http://xkcd.com/1288/),
 
 ## Thanks ##
 Thanks to @jonathanwgoodwin for the idea!
-
-Thank you to @Guerillero and @Ironholds for helping me refine the offensive
-(inoffensive?) regex!
