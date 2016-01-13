@@ -91,7 +91,7 @@ substitutions = {
     "force": "horse",
     "forces": "horses",
     "keyboard": "leopard",
-    "keyboards": "leopards"
+    "keyboards": "leopards",
     "debate": "dance-off",
     "debates": "dance-offs",
     "self driving": "uncontrollably swerving",
@@ -121,7 +121,7 @@ substitutions = {
     "years": "minutes",
     "year": "minute",
     "minute": "year",
-    "no indication", "lots of signs",
+    "no indication": "lots of signs",
     "urged restraint by": "drunkenly egged on",
     "horsepower": "tons of horsemeat"
 }
