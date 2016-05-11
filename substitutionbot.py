@@ -124,7 +124,30 @@ substitutions = {
     "minute": "year",
     "no indication": "lots of signs",
     "urged restraint by": "drunkenly egged on",
-    "horsepower": "tons of horsemeat"
+    "horsepower": "tons of horsemeat",
+    # Comic 3 http://xkcd.com/1679/
+    "gaffe": "magic spell",
+    "ancient": "haunted",
+    "star-studded": "blood-soaked",
+    "remains to be seen": "will never be known",
+    "silver bullet": "way to kill werewolves",
+    "subway system": "tunnels i found",
+    "surprising": "surprising (but not to me)",
+    "war of words": "interplanetary war",
+    "tension": "sexual tension",
+    "cautiously optimistic": "delusional",
+    "doctor who": "the big bang theory",
+    "win votes": "find pokémon",
+    "behind the headlines": "beyond the grave",
+    "email": "poem",
+    "facebook post": "poem",
+    "tweet": "poem",
+    "facebook ceo": "this guy",
+    "latest": "final",
+    "disrupt": "destroy",
+    "meeting": "ménage à trois",
+    "scientists": "channing tatum and his friends",
+    "you won't believe": "i'm really sad about"
 }
 
 hparser = HTMLParser.HTMLParser()
