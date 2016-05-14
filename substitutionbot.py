@@ -211,6 +211,7 @@ def process(headline):
         return False
 
     headline = " ".join(headline)
+    headline = headline[0].upper() + headline[1:]
     headline = hparser.unescape(headline)
 
     # Don't tweet anything that's too long
