@@ -154,7 +154,9 @@ substitutions = {
     "meeting": "ménage à trois",
     "meetings": "ménages à trois",
     "scientists": "Channing Tatum and his friends",
-    "you won't believe": "I'm really sad about"
+    "you won't believe": "I'm really sad about",
+    # xkcd.com/1689
+    "my cat": "my friend Catherine"
 }
 
 hparser = HTMLParser.HTMLParser()
